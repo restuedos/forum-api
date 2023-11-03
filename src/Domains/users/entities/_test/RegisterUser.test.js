@@ -1,5 +1,5 @@
 const RegisterUser = require('../RegisterUser');
- 
+
 describe('a RegisterUser entities', () => {
   it('should throw error when payload did not contain needed property', () => {
     // Arrange
@@ -7,11 +7,11 @@ describe('a RegisterUser entities', () => {
       username: 'abc',
       password: 'abc',
     };
- 
+
     // Action and Assert
     expect(() => new RegisterUser(payload)).toThrowError('REGISTER_USER.NOT_CONTAIN_NEEDED_PROPERTY');
   });
- 
+
   it('should throw error when payload did not meet data type specification', () => {
     // Arrange
     const payload = {
@@ -19,6 +19,7 @@ describe('a RegisterUser entities', () => {
       fullname: true,
       password: 'abc',
     };
+
     // Action and Assert
     expect(() => new RegisterUser(payload)).toThrowError('REGISTER_USER.NOT_MEET_DATA_TYPE_SPECIFICATION');
   });
@@ -30,6 +31,7 @@ describe('a RegisterUser entities', () => {
       fullname: 'Dicoding Indonesia',
       password: 'abc',
     };
+
     // Action and Assert
     expect(() => new RegisterUser(payload)).toThrowError('REGISTER_USER.USERNAME_LIMIT_CHAR');
   });
@@ -41,6 +43,7 @@ describe('a RegisterUser entities', () => {
       fullname: 'dicoding',
       password: 'abc',
     };
+
     // Action and Assert
     expect(() => new RegisterUser(payload)).toThrowError('REGISTER_USER.USERNAME_CONTAIN_RESTRICTED_CHARACTER');
   });
@@ -52,8 +55,10 @@ describe('a RegisterUser entities', () => {
       fullname: 'Dicoding Indonesia',
       password: 'abc',
     };
+
     // Action
     const { username, fullname, password } = new RegisterUser(payload);
+
     // Assert
     expect(username).toEqual(payload.username);
     expect(fullname).toEqual(payload.fullname);
