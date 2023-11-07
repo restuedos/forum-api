@@ -33,9 +33,9 @@ describe('HTTP server', () => {
     it('should response 201 and persisted user', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicoding',
+        username: 'edzero',
         password: 'secret',
-        fullname: 'Dicoding Indonesia',
+        fullname: 'Restu Edo Setiaji',
       };
       const server = await createServer(container);
 
@@ -56,7 +56,7 @@ describe('HTTP server', () => {
     it('should response 400 when request payload not contain needed property', async () => {
       // Arrange
       const requestPayload = {
-        fullname: 'Dicoding Indonesia',
+        fullname: 'Restu Edo Setiaji',
         password: 'secret',
       };
       const server = await createServer(container);
@@ -78,9 +78,9 @@ describe('HTTP server', () => {
     it('should response 400 when request payload not meet data type specification', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicoding',
+        username: 'edzero',
         password: 'secret',
-        fullname: ['Dicoding Indonesia'],
+        fullname: ['Restu Edo Setiaji'],
       };
       const server = await createServer(container);
 
@@ -101,9 +101,9 @@ describe('HTTP server', () => {
     it('should response 400 when username more than 50 character', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicodingindonesiadicodingindonesiadicodingindonesiadicoding',
+        username: 'edzerostudioedzerostudioedzerostudioedzerostudioedzerostudio',
         password: 'secret',
-        fullname: 'Dicoding Indonesia',
+        fullname: 'Restu Edo Setiaji',
       };
       const server = await createServer(container);
 
@@ -124,9 +124,9 @@ describe('HTTP server', () => {
     it('should response 400 when username contain restricted character', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicoding indonesia',
+        username: 'edzero indonesia',
         password: 'secret',
-        fullname: 'Dicoding Indonesia',
+        fullname: 'Restu Edo Setiaji',
       };
       const server = await createServer(container);
 
@@ -146,10 +146,10 @@ describe('HTTP server', () => {
 
     it('should response 400 when username unavailable', async () => {
       // Arrange
-      await UsersTableTestHelper.addUser({ username: 'dicoding' });
+      await UsersTableTestHelper.addUser({ username: 'edzero' });
       const requestPayload = {
-        username: 'dicoding',
-        fullname: 'Dicoding Indonesia',
+        username: 'edzero',
+        fullname: 'Restu Edo Setiaji',
         password: 'super_secret',
       };
       const server = await createServer(container);
@@ -173,7 +173,7 @@ describe('HTTP server', () => {
     it('should response 201 and new authentication', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicoding',
+        username: 'edzero',
         password: 'secret',
       };
       const server = await createServer(container);
@@ -182,9 +182,9 @@ describe('HTTP server', () => {
         method: 'POST',
         url: '/users',
         payload: {
-          username: 'dicoding',
+          username: 'edzero',
           password: 'secret',
-          fullname: 'Dicoding Indonesia',
+          fullname: 'Restu Edo Setiaji',
         },
       });
 
@@ -206,7 +206,7 @@ describe('HTTP server', () => {
     it('should response 400 if username not found', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicoding',
+        username: 'edzero',
         password: 'secret',
       };
       const server = await createServer(container);
@@ -228,7 +228,7 @@ describe('HTTP server', () => {
     it('should response 401 if password wrong', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicoding',
+        username: 'edzero',
         password: 'wrong_password',
       };
       const server = await createServer(container);
@@ -237,9 +237,9 @@ describe('HTTP server', () => {
         method: 'POST',
         url: '/users',
         payload: {
-          username: 'dicoding',
+          username: 'edzero',
           password: 'secret',
-          fullname: 'Dicoding Indonesia',
+          fullname: 'Restu Edo Setiaji',
         },
       });
 
@@ -260,7 +260,7 @@ describe('HTTP server', () => {
     it('should response 400 if login payload not contain needed property', async () => {
       // Arrange
       const requestPayload = {
-        username: 'dicoding',
+        username: 'edzero',
       };
       const server = await createServer(container);
 
@@ -310,9 +310,9 @@ describe('HTTP server', () => {
         method: 'POST',
         url: '/users',
         payload: {
-          username: 'dicoding',
+          username: 'edzero',
           password: 'secret',
-          fullname: 'Dicoding Indonesia',
+          fullname: 'Restu Edo Setiaji',
         },
       });
       // login user
@@ -320,7 +320,7 @@ describe('HTTP server', () => {
         method: 'POST',
         url: '/authentications',
         payload: {
-          username: 'dicoding',
+          username: 'edzero',
           password: 'secret',
         },
       });
@@ -400,7 +400,7 @@ describe('HTTP server', () => {
     it('should return 400 if refresh token not registered in database', async () => {
       // Arrange
       const server = await createServer(container);
-      const refreshToken = await container.getInstance(AuthenticationTokenManager.name).createRefreshToken({ username: 'dicoding' });
+      const refreshToken = await container.getInstance(AuthenticationTokenManager.name).createRefreshToken({ username: 'edzero' });
 
       // Action
       const response = await server.inject({
@@ -502,8 +502,8 @@ describe('HTTP server', () => {
   it('should handle server error correctly', async () => {
     // Arrange
     const requestPayload = {
-      username: 'dicoding',
-      fullname: 'Dicoding Indonesia',
+      username: 'edzero',
+      fullname: 'Restu Edo Setiaji',
       password: 'super_secret',
     };
     const server = await createServer({}); // fake injection
